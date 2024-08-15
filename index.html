@@ -11,7 +11,7 @@
     <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
     
     <!-- CSS Links -->
-    <link rel="stylesheet" href="./assets/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="./assets/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/style.css">
     
     <!-- Fonts -->
@@ -44,6 +44,9 @@
       }
     }
     </script>
+    
+    <!-- Preload Important Resources -->
+    <link rel="preload" href="./assets/fonts/font-file.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 </head>
 <body>
 <div class="top-header">
@@ -67,13 +70,13 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="./assets/images/slider/ryoji-iwata-wUZjnOv7t0g-unsplash.jpg" class="d-block w-100" alt="Landscape Photography by Ryoji Iwata" width="1920" height="1080">
+                <img src="./assets/images/slider/ryoji-iwata-wUZjnOv7t0g-unsplash.jpg" class="d-block w-100" alt="Landscape Photography by Ryoji Iwata" width="1920" height="1080" loading="lazy">
             </div>
             <div class="carousel-item">
-                <img src="./assets/images/slider/nicholas-green-nPz8akkUmDI-unsplash.jpg" class="d-block w-100" alt="Landscape Photography by Nicholas Green" width="1920" height="1080">
+                <img src="./assets/images/slider/nicholas-green-nPz8akkUmDI-unsplash.jpg" class="d-block w-100" alt="Landscape Photography by Nicholas Green" width="1920" height="1080" loading="lazy">
             </div>
             <div class="carousel-item">
-                <img src="./assets/images/slider/edward-cisneros-3_h6-1NPDGw-unsplash.jpg" class="d-block w-100" alt="Landscape Photography by Edward Cisneros" width="1920" height="1080">
+                <img src="./assets/images/slider/edward-cisneros-3_h6-1NPDGw-unsplash.jpg" class="d-block w-100" alt="Landscape Photography by Edward Cisneros" width="1920" height="1080" loading="lazy">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" aria-label="Previous slide">
@@ -189,7 +192,7 @@
 <link rel="canonical" href="https://votre-site.com">
 
 <!-- Scripts -->
-<script src="./assets/bootstrap/bootstrap.bundle.js"></script>
+<script src="./assets/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="./assets/maugallery.js"></script>
 <script src="./assets/scripts.js"></script>
