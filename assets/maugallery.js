@@ -39,7 +39,7 @@
     $.fn.mauGallery.listeners = function(options) {
         $(".gallery-item").on("click", function() {
             if (options.lightBox && $(this).prop("tagName") === "IMG") {
-                $.fn.mauGallery.methods.openLightBox($(this), options.lightboxId);
+                $.fn.mauGallery.methods.loadBootstrapAndOpenLightBox($(this), options.lightboxId);
             }
         });
 
@@ -94,14 +94,52 @@
         },
 
         responsiveImageItem(element) {
-            if (element.prop("tagName") === "IMG") {
-                element.addClass("img-fluid");
+            // On ne met pas img-fluid ici pour éviter les conflits avec les tailles définies ailleurs.
+        },
+
+        loadBootstrapAndOpenLightBox(element, lightboxId) {
+            $.fn.mauGallery.methods.loadBootstrap(function() {
+                $.fn.mauGallery.methods.openLightBox(element, lightboxId);
+            });
+        },
+
+        loadBootstrap(callback) {
+            if (!document.getElementById("bootstrap-css")) {
+                const bootstrapCSS = document.createElement("link");
+                bootstrapCSS.id = "bootstrap-css";
+                bootstrapCSS.rel = "stylesheet";
+                bootstrapCSS.href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css";
+                document.head.appendChild(bootstrapCSS);
+            }
+
+            if (!document.getElementById("bootstrap-js")) {
+                const bootstrapJS = document.createElement("script");
+                bootstrapJS.id = "bootstrap-js";
+                bootstrapJS.src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js";
+                bootstrapJS.onload = callback; // Appeler le callback après le chargement de Bootstrap JS
+                document.body.appendChild(bootstrapJS);
+            } else {
+                callback(); // Si Bootstrap est déjà chargé, appeler directement le callback
             }
         },
 
         openLightBox(element, lightboxId) {
-            $(`#${lightboxId}`).find(".lightboxImage").attr("src", element.attr("src"));
-            $(`#${lightboxId}`).modal("show");
+            const lightboxElement = $(`#${lightboxId}`);
+            const lightboxImage = lightboxElement.find(".lightboxImage");
+
+            // Appliquer la classe img-fluid seulement lors de l'ouverture du modal
+            lightboxImage.attr("src", element.attr("src")).addClass("img-fluid");
+
+            lightboxElement.on('shown.bs.modal', function () {
+                lightboxImage.addClass("img-fluid");
+            });
+
+            lightboxElement.on('hidden.bs.modal', function () {
+                // Retirer la classe img-fluid lorsque le modal est fermé
+                lightboxImage.removeClass("img-fluid");
+            });
+
+            lightboxElement.modal("show");
         },
 
         prevImage() {
@@ -184,7 +222,7 @@
                                     ? '<div class="mg-prev" style="cursor:pointer;position:absolute;top:50%;left:-15px;background:white;"><</div>'
                                     : '<span style="display:none;" />'
                             }
-                            <img class="lightboxImage img-fluid" alt="Contenu de l\'image affichée dans la modale au clique"/>
+                            <img class="lightboxImage" alt="Contenu de l\'image affichée dans la modale au clique"/>
                             ${
                                 navigation
                                     ? '<div class="mg-next" style="cursor:pointer;position:absolute;top:50%;right:-15px;background:white;}">></div>'
