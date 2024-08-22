@@ -379,5 +379,32 @@ input[type="submit"] {
 		aspect-ratio: 374 / 329;
 		object-fit: cover;
 	}
-		
+	/* CSS for the tags bar and active tag */
+	.tags-bar {
+    	position: relative;
+	}
+
+	.tags-bar .active-tag-bg {
+    	position: absolute;
+    	background-color: gold;
+    	height: 100%;
+    	top: 0;
+    	left: 0;
+    	width: 0;
+    	transition: width 0.3s ease, left 0.3s ease;
+    	z-index: -1; 
+    	border-radius: 5px;
+	}
+
+	.tags-bar .nav-link {
+    	position: relative;
+    	z-index: 1;
+    	padding: 5px 10px;
+    	cursor: pointer;
+	}
+
+	.nav-item.active .nav-link {
+    	color: white; /* Text color on active tag */
+	}
+	
 }

@@ -236,12 +236,12 @@
 
         showItemTags(gallery, position, tags) {
             var tagItems =
-                '<li class="nav-item"><span class="nav-link active active-tag"  data-images-toggle="all">Tous</span></li>';
+                '<li class="nav-item"><span class="nav-link active"  data-images-toggle="all">Tous</span></li>';
             $.each(tags, function(index, value) {
-                tagItems += `<li class="nav-item active">
+                tagItems += `<li class="nav-item">
                     <span class="nav-link"  data-images-toggle="${value}">${value}</span></li>`;
             });
-            var tagsRow = `<ul class="my-4 tags-bar nav nav-pills">${tagItems}</ul>`;
+            var tagsRow = `<ul class="my-4 tags-bar nav nav-pills">${tagItems}<div class="active-tag-bg"></div></ul>`;
 
             if (position === "bottom") {
                 gallery.append(tagsRow);
@@ -250,17 +250,32 @@
             } else {
                 console.error(`Unknown tags position: ${position}`);
             }
+
+            // Set the initial position and width of the active background
+            const $activeLink = $('.tags-bar .nav-link.active');
+            const $bg = $('.tags-bar .active-tag-bg');
+            $bg.width($activeLink.outerWidth());
+            $bg.css('left', $activeLink.position().left);
         },
 
         filterByTag() {
-            if ($(this).hasClass("active-tag")) {
+            const $this = $(this);
+            if ($this.hasClass("active")) {
                 return;
             }
-            $(".active-tag").removeClass("active active-tag");
-            $(this).addClass("active-tag");
 
-            var tag = $(this).data("images-toggle");
+            // Remove active class from previously active tag
+            $(".tags-bar .nav-link.active").removeClass("active");
+            $this.addClass("active");
 
+            // Move the background to follow the active tag
+            const $bg = $('.tags-bar .active-tag-bg');
+            $bg.width($this.outerWidth());
+            $bg.css('left', $this.position().left);
+
+            var tag = $this.data("images-toggle");
+
+            // Filter gallery items based on the selected tag
             $(".gallery-item").each(function() {
                 $(this).parents(".item-column").hide();
                 if (tag === "all") {
