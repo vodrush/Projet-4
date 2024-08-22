@@ -43,9 +43,17 @@
             }
         });
 
-        $(".gallery").on("click", ".nav-link", $.fn.mauGallery.methods.filterByTag);
-        $(".gallery").on("click", ".mg-prev", () => $.fn.mauGallery.methods.prevImage(options.lightboxId));
-        $(".gallery").on("click", ".mg-next", () => $.fn.mauGallery.methods.nextImage(options.lightboxId));
+        $(".gallery").on("click", ".nav-link", function() {
+            $.fn.mauGallery.methods.filterByTag.call(this);
+        });
+
+        $(".gallery").on("click", ".mg-prev", function() {
+            $.fn.mauGallery.methods.prevImage(options.lightboxId);
+        });
+
+        $(".gallery").on("click", ".mg-next", function() {
+            $.fn.mauGallery.methods.nextImage(options.lightboxId);
+        });
     };
 
     $.fn.mauGallery.methods = {
