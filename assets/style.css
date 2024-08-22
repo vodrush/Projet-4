@@ -362,4 +362,22 @@ input[type="submit"] {
     .picture {
         width: 80%;
     }
+	.item-column::after {
+		content: "";
+		display: block;
+		padding-bottom: 100%;
+	}
+	
+	.gallery-item {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		padding: .5em;
+	}
+	.picture img {
+		aspect-ratio: 374 / 329;
+		object-fit: cover;
+	}
+		
 }
