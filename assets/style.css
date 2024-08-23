@@ -406,5 +406,12 @@ input[type="submit"] {
 	.nav-item.active .nav-link {
     	color: white; /* Text color on active tag */
 	}
-	
+    #carouselExampleIndicators {
+        height: 879px;
+        overflow: hidden;
+      }
+    .carousel-item img {
+    width: 100%;
+    height: auto;
+    }
 }
