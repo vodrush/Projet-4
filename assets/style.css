@@ -487,7 +487,9 @@ input[type="submit"] {
     width: 100%;
     height: auto;
 }
-
+.item-column img {
+    
+}
 @font-face {
     font-family: 'Inter';
     src: url('https://fonts.gstatic.com/s/inter/v3/UCvCO3FwrcS8pX-cDB7KCQ.woff2') format('woff2');
