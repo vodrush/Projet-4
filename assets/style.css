@@ -4,7 +4,7 @@ body {
 }
 
 * {
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
     font-style: normal;
 }
 
@@ -18,10 +18,12 @@ body {
     padding-inline: 100px;
     padding-block: 30px;
     align-items: center;
+    height: 80px; /* Set a fixed height */
 }
 
 .top-header .name {
     font-size: 26px;
+    height: 26px; /* Match height to font-size */
 }
 
 .nav ul {
@@ -29,6 +31,8 @@ body {
     list-style-type: none;
     font-size: 14px;
     margin-bottom: 0;
+    height: 40px; /* Set a fixed height for the navigation */
+    align-items: center;
 }
 
 .nav li {
@@ -71,8 +75,8 @@ body {
 
 .picture img {
     width: 100%;
+    height: auto;
 }
-
 
 #about-me {
     flex: 2;
@@ -85,7 +89,7 @@ body {
 }
 
 .about-me__introduction {
-    font-family: 'Spectral';
+    font-family: 'Spectral', serif;
     font-weight: 800;
     font-style: italic;
     width: 60%;
@@ -138,7 +142,7 @@ body {
 .mg-prev, .mg-next {
     width: 30px;
     height: 30px;
-    border-radius: 00%;
+    border-radius: 50%;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -146,7 +150,7 @@ body {
 }
 
 .quote {
-    font-family: 'Spectral';
+    font-family: 'Spectral', serif;
     font-style: italic;
     width: 70%;
     margin: auto;
@@ -154,13 +158,13 @@ body {
 }
 
 .quote__text {
-    font-family: Spectral;
+    font-family: Spectral, serif;
     font-style: italic;
     font-weight: 300;
 }
 
 .quote__author {
-    font-family: Spectral;
+    font-family: Spectral, serif;
     font-weight: 800;
     font-size: 22px;
 }
@@ -271,231 +275,4 @@ input[type="submit"] {
     #about-me h6, #about-me p {
         width: 100%;
     }
-}
-
-@media all and (max-width: 1000px) {
-    #about {
-        flex-direction: column;
-    }
-    .picture {
-        width: 50%;
-    }
-    .picture.left::before {
-        width: 100%;
-        height: 30%;
-        position: absolute;
-        bottom: auto;
-        top: 0;
-        left: 0;
-        z-index: -1;
-    }
-    .about-me__title {
-        text-align: center;
-        margin-top: 1em;
-    }
-    #services .container {
-        flex-direction: column;
-    }
-    .service {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        margin: 2em 0;
-    }
-    .service__description {
-        margin-bottom: 1em;
-    }
-    #services .container::before {
-        width: 30%;
-        height: 100%;
-        bottom: 0;
-        right: 0;
-        left: auto;
-        z-index: 0;
-    }
-    #contact .container {
-        flex-direction: column;
-    }
-    #contact .picture.right {
-        margin-top: 1em;
-    }
-    .picture.right::before {
-        width: 100%;
-        height: 30%;
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        z-index: -1;
-    }
-}
-
-@media all and (max-width: 650px) {
-    .top-header {
-        flex-direction: column;
-        padding-inline: 0;
-    }
-    .top-header .nav, .top-header .nav ul {
-        width: 100%;
-        padding: 0 0 0 0;
-    }
-    .top-header .nav li {
-        flex: 1;
-        padding-block: 1em;
-        text-align: center;
-    }
-    .picture.left::before, .picture.right::before {
-        height: 150px;
-    }
-    #services .container {
-        align-items: center;
-    }
-    .service {
-        max-width: 90%;
-    }
-    #about, #contact {
-        padding-inline: 2em;
-        padding-block: 2em;
-    }
-    form {
-        width: 100%;
-    }
-    .picture {
-        width: 80%;
-    }
-	.item-column::after {
-		content: "";
-		display: block;
-		padding-bottom: 100%;
-	}
-	
-	.gallery-item {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		padding: .5em;
-	}
-	.picture img {
-		aspect-ratio: 374 / 329;
-		object-fit: cover;
-	}
-	/* CSS for the tags bar and active tag */
-	.tags-bar {
-    	position: relative;
-	}
-
-	.tags-bar .active-tag-bg {
-    	position: absolute;
-    	background-color: gold;
-    	height: 100%;
-    	top: 0;
-    	left: 0;
-    	width: 0;
-    	transition: width 0.3s ease, left 0.3s ease;
-    	z-index: -1; 
-    	border-radius: 5px;
-	}
-
-	.tags-bar .nav-link {
-    	position: relative;
-    	z-index: 1;
-    	padding: 5px 10px;
-    	cursor: pointer;
-	}
-
-	.nav-item.active .nav-link {
-    	color: white; /* Text color on active tag */
-	}
-    #carouselExampleIndicators {
-        height: 879px;
-        overflow: hidden;
-      }
-    .carousel-item img {
-    width: 100%;
-    height: auto;
-    }
-    /* Preload the header font */
-  @font-face {
-    font-family: 'Inter';
-    src: url('https://fonts.gstatic.com/s/inter/v3/UCvCO3FwrcS8pX-cDB7KCQ.woff2') format('woff2');
-    font-display: swap;
-}
-
-/* Set specific dimensions for the header elements */
-.top-header {
-  background-color: white;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  padding-inline: 100px;
-  padding-block: 30px;
-  align-items: center;
-  height: 80px; /* Set a fixed height */
-}
-.top-header .name {
-  font-size: 26px;
-  height: 26px; /* Match height to font-size */
-}
-.nav ul {
-  display: flex;
-  list-style-type: none;
-  font-size: 14px;
-  margin-bottom: 0;
-  height: 40px; /* Set a fixed height for the navigation */
-  align-items: center;
-}
-.nav a {
-  text-decoration: none;
-  color: #000;
-}
-.top-header {
-    background-color: white;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    padding-inline: 100px;
-    padding-block: 30px;
-    align-items: center;
-}
-
-.top-header .name {
-    font-size: 26px;
-}
-
-.nav ul {
-    display: flex;
-    list-style-type: none;
-    font-size: 14px;
-    margin-bottom: 0;
-}
-
-.nav a {
-    text-decoration: none;
-    color: #000;
-}
-
-.carousel-item {
-    height: 100%;
-    overflow: hidden;
-}
-.gallery-item img {
-    aspect-ratio: 424 / 424;
-    width: 424px;
-    height: 424px;
-}
-.img.gallery-item{
-    aspect-ratio: 424 / 424;
-    width: 424px;
-    height: 424px;
-}
-
-@font-face {
-    font-family: 'Inter';
-    src: url('https://fonts.gstatic.com/s/inter/v3/UCvCO3FwrcS8pX-cDB7KCQ.woff2') format('woff2');
-    font-display: swap;
-}
 }
