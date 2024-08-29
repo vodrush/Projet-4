@@ -487,7 +487,7 @@ input[type="submit"] {
     width: 100%;
     height: auto;
 }
-.gallery-item {
+.gallery-item img {
     aspect-ratio: 424 / 424;
     width: 424px;
     height: 424px;
