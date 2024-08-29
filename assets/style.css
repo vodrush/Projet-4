@@ -482,19 +482,12 @@ input[type="submit"] {
     height: 100%;
     overflow: hidden;
 }
-.carousel-item img {
-    aspect-ratio: 1920 / 879;
-    width: 100%;
-    height: auto;
-}
 .gallery-item img {
     aspect-ratio: 424 / 424;
     width: 424px;
     height: 424px;
 }
-.item-column img {
 
-}
 @font-face {
     font-family: 'Inter';
     src: url('https://fonts.gstatic.com/s/inter/v3/UCvCO3FwrcS8pX-cDB7KCQ.woff2') format('woff2');
