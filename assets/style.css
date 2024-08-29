@@ -129,8 +129,8 @@ body {
 
 .gallery-item {
     position: absolute;
-    width: 440px;
-    height: 440px;
+    width: 424px;
+    height: 424px;
     object-fit: cover;
     padding: .5em;
 }
@@ -483,6 +483,11 @@ input[type="submit"] {
     overflow: hidden;
 }
 .gallery-item img {
+    aspect-ratio: 424 / 424;
+    width: 424px;
+    height: 424px;
+}
+.img.gallery-item{
     aspect-ratio: 424 / 424;
     width: 424px;
     height: 424px;
