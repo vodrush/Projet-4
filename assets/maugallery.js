@@ -10,6 +10,7 @@
             $.fn.mauGallery.listeners(options);
 
             $(this).children(".gallery-item").each(function(index) {
+                $(this).attr('data-index', index);  // Assign a unique index to each image
                 $.fn.mauGallery.methods.responsiveImageItem($(this));
                 $.fn.mauGallery.methods.moveItemInRowWrapper($(this));
                 $.fn.mauGallery.methods.wrapItemInColumn($(this), options.columns);
@@ -94,7 +95,6 @@
         },
 
         responsiveImageItem(element) {
-            // On ne met pas img-fluid ici pour éviter les conflits avec les tailles définies ailleurs.
         },
 
         loadBootstrapAndOpenLightBox(element, lightboxId) {
@@ -116,98 +116,66 @@
                 const bootstrapJS = document.createElement("script");
                 bootstrapJS.id = "bootstrap-js";
                 bootstrapJS.src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js";
-                bootstrapJS.onload = callback; // Appeler le callback après le chargement de Bootstrap JS
+                bootstrapJS.onload = callback;
                 document.body.appendChild(bootstrapJS);
             } else {
-                callback(); // Si Bootstrap est déjà chargé, appeler directement le callback
+                callback();
             }
         },
 
         openLightBox(element, lightboxId) {
             const lightboxElement = $(`#${lightboxId}`);
             const lightboxImage = lightboxElement.find(".lightboxImage");
-
-            // Appliquer la classe img-fluid seulement lors de l'ouverture du modal
             lightboxImage.attr("src", element.attr("src")).addClass("img-fluid");
+            lightboxElement.data('current-index', element.data('index'));
 
             lightboxElement.on('shown.bs.modal', function () {
                 lightboxImage.addClass("img-fluid");
             });
 
             lightboxElement.on('hidden.bs.modal', function () {
-                // Retirer la classe img-fluid lorsque le modal est fermé
                 lightboxImage.removeClass("img-fluid");
             });
 
             lightboxElement.modal("show");
         },
 
-        prevImage() {
-            let activeImage = null;
-            $("img.gallery-item").each(function() {
-                if ($(this).attr("src") === $(".lightboxImage").attr("src")) {
-                    activeImage = $(this);
-                }
-            });
-            let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
+        prevImage(lightboxId) {
+            const lightboxElement = $(`#${lightboxId}`);
+            let currentIndex = lightboxElement.data('current-index');
             let imagesCollection = [];
-            if (activeTag === "all") {
-                $(".item-column").each(function() {
-                    if ($(this).children("img").length) {
-                        imagesCollection.push($(this).children("img"));
-                    }
-                });
-            } else {
-                $(".item-column").each(function() {
-                    if ($(this).children("img").data("gallery-tag") === activeTag) {
-                        imagesCollection.push($(this).children("img"));
-                    }
-                });
-            }
-            let index = 0,
-                next = null;
+            let activeTag = $(".tags-bar .nav-link.active").data("images-toggle");
 
-            $(imagesCollection).each(function(i) {
-                if ($(activeImage).attr("src") === $(this).attr("src")) {
-                    index = i;
+            $(".gallery-item").each(function() {
+                if (activeTag === "all" || $(this).data("gallery-tag") === activeTag) {
+                    imagesCollection.push($(this));
                 }
             });
-            next = imagesCollection[index - 1] || imagesCollection[imagesCollection.length - 1];
-            $(".lightboxImage").attr("src", $(next).attr("src"));
+
+            let prevIndex = (currentIndex - 1 + imagesCollection.length) % imagesCollection.length;
+            let prev = imagesCollection[prevIndex];
+
+            lightboxElement.data('current-index', prev.data('index'));
+            $(".lightboxImage").attr("src", prev.attr("src"));
         },
 
-        nextImage() {
-            let activeImage = null;
-            $("img.gallery-item").each(function() {
-                if ($(this).attr("src") === $(".lightboxImage").attr("src")) {
-                    activeImage = $(this);
-                }
-            });
-            let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
+        nextImage(lightboxId) {
+            const lightboxElement = $(`#${lightboxId}`);
+            let currentIndex = lightboxElement.data('current-index');
             let imagesCollection = [];
-            if (activeTag === "all") {
-                $(".item-column").each(function() {
-                    if ($(this).children("img").length) {
-                        imagesCollection.push($(this).children("img"));
-                    }
-                });
-            } else {
-                $(".item-column").each(function() {
-                    if ($(this).children("img").data("gallery-tag") === activeTag) {
-                        imagesCollection.push($(this).children("img"));
-                    }
-                });
-            }
-            let index = 0,
-                next = null;
+            let activeTag = $(".tags-bar .nav-link.active").data("images-toggle");
 
-            $(imagesCollection).each(function(i) {
-                if ($(activeImage).attr("src") === $(this).attr("src")) {
-                    index = i;
+            $(".gallery-item").each(function() {
+                if (activeTag === "all" || $(this).data("gallery-tag") === activeTag) {
+                    imagesCollection.push($(this));
                 }
             });
-            next = imagesCollection[index + 1] || imagesCollection[0];
-            $(".lightboxImage").attr("src", $(next).attr("src"));
+
+            let nextIndex = (currentIndex + 1) % imagesCollection.length;
+            let next = imagesCollection[nextIndex];
+
+            lightboxElement.data('current-index', next.data('index'));
+            $(".lightboxImage").attr("src", next.attr("src"));
         },
 
         createLightBox(gallery, lightboxId, navigation) {
@@ -225,7 +193,7 @@
                             <img class="lightboxImage" alt="Contenu de l\'image affichée dans la modale au clique"/>
                             ${
                                 navigation
-                                    ? '<div class="mg-next" style="cursor:pointer;position:absolute;top:50%;right:-15px;background:white;}">></div>'
+                                    ? '<div class="mg-next" style="cursor:pointer;position:absolute;top:50%;right:-15px;background:white;">></div>'
                                     : '<span style="display:none;" />'
                             }
                         </div>
@@ -251,7 +219,6 @@
                 console.error(`Unknown tags position: ${position}`);
             }
 
-            // Set the initial position and width of the active background
             const $activeLink = $('.tags-bar .nav-link.active');
             const $bg = $('.tags-bar .active-tag-bg');
             $bg.width($activeLink.outerWidth());
@@ -264,18 +231,15 @@
                 return;
             }
 
-            // Remove active class from previously active tag
             $(".tags-bar .nav-link.active").removeClass("active");
             $this.addClass("active");
 
-            // Move the background to follow the active tag
             const $bg = $('.tags-bar .active-tag-bg');
             $bg.width($this.outerWidth());
             $bg.css('left', $this.position().left);
 
             var tag = $this.data("images-toggle");
 
-            // Filter gallery items based on the selected tag
             $(".gallery-item").each(function() {
                 $(this).parents(".item-column").hide();
                 if (tag === "all") {
