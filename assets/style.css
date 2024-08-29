@@ -487,8 +487,13 @@ input[type="submit"] {
     width: 100%;
     height: auto;
 }
+.gallery-item {
+    aspect-ratio: 424 / 424;
+    width: 424px;
+    height: 424px;
+}
 .item-column img {
-    
+
 }
 @font-face {
     font-family: 'Inter';
