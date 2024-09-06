@@ -269,12 +269,8 @@ input[type="submit"] {
     height: 3rem;
     opacity: 1;
     filter: none; 
-    color: #000;
 }
-.carousel-control-next,
-.carousel-control-prev{
-    color: #000;
-}
+
 
 .carousel-control-next-icon {
     background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M7.293%204.707%2014.586%2012l-7.293%207.293%201.414%201.414L17.414%2012%208.707%203.293%207.293%204.707z%22%20fill%3D%22%23ffffff%22/%3E%3C/svg%3E');
@@ -283,9 +279,7 @@ input[type="submit"] {
 .carousel-control-prev-icon {
     background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M15.293%203.293%206.586%2012l8.707%208.707%201.414-1.414L9.414%2012l7.293-7.293-1.414-1.414z%22%20fill%3D%22%23ffffff%22/%3E%3C/svg%3E');
 }
-.carousel-control-next, .carousel-control-prev {
-    color: black;
-}
+
 
 
 
