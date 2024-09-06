@@ -1,6 +1,7 @@
-$(document).ready(function() {
-    if ($('.gallery').length > 0) {
-        $('.gallery').mauGallery({
+document.addEventListener('DOMContentLoaded', () => {
+    const galleries = document.querySelectorAll('.gallery');
+    galleries.forEach(gallery => {
+        new MauGallery(gallery, {
             columns: {
                 xs: 1,
                 sm: 2,
@@ -13,8 +14,5 @@ $(document).ready(function() {
             showTags: true,
             tagsPosition: 'top'
         });
-        console.log("Gallery initialized successfully");
-    } else {
-        console.error("Gallery element not found");
-    }
+    });
 });
