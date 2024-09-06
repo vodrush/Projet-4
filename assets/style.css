@@ -269,8 +269,7 @@ input[type="submit"] {
     height: 3rem;
     opacity: 1;
     filter: none; 
-    
-    background-color: rgba(0, 0, 0, 0.8); 
+    color: #000;
 }
 
 .carousel-control-next-icon {
