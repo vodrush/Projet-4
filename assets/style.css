@@ -263,12 +263,13 @@ input[type="submit"] {
 }
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
-    opacity: 1; // Assurer une opacité totale
+    opacity: 1; 
     background-size: contain;
     background-position: center;
+    background-color: black;
     width: 3rem;
     height: 3rem;
-    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.9)); // Ombre plus forte et plus foncée
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.9));
 }
 
 .carousel-control-next-icon {
