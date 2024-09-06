@@ -266,7 +266,6 @@ input[type="submit"] {
     opacity: 1; 
     background-size: contain;
     background-position: center;
-    background-color: black;
     width: 3rem;
     height: 3rem;
     filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.9));
@@ -278,6 +277,9 @@ input[type="submit"] {
 
 .carousel-control-prev-icon {
     background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M15.293%203.293%206.586%2012l8.707%208.707%201.414-1.414L9.414%2012l7.293-7.293-1.414-1.414z%22%20fill%3D%22%23ffffff%22/%3E%3C/svg%3E');
+}
+.button {
+    background-color: black;
 }
 
 
